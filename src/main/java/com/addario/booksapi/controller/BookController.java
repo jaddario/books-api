@@ -26,10 +26,10 @@ public class BookController {
     @PostMapping("/")
     public ResponseEntity<Book> insert(BookDTO dto){
 
-        var book = Book.from(dto);
-        service.insert(book);
+//        var book = Book.from(dto);
+//        service.insert(book);
 
-        return ResponseEntity.ok(book);
+        return ResponseEntity.ok(new Book());
     }
 
     @GetMapping("/")

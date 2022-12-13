@@ -11,7 +11,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@Builder
 @RequiredArgsConstructor
 public class BookDTO {
     private Long id;
@@ -24,14 +23,14 @@ public class BookDTO {
 
     private String subject;
 
-    public static BookDTO from(Book entity) {
-        return BookDTO.builder()
-                      .id(entity.getId())
-                      .author(entity.getAuthor())
-                      .title(entity.getTitle())
-                      .subject(entity.getSubject())
-                      .build();
-    }
+//    public static BookDTO from(Book entity) {
+//        return BookDTO.builder()
+//                      .id(entity.getId())
+//                      .author(entity.getAuthor())
+//                      .title(entity.getTitle())
+//                      .subject(entity.getSubject())
+//                      .build();
+//    }
 
     @Override
     public boolean equals(Object o) {

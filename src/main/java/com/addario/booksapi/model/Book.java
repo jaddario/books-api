@@ -1,7 +1,9 @@
 package com.addario.booksapi.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,7 +19,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @Builder
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Entity(name = "BOOKS")
 public class Book {
     @Id
@@ -35,6 +37,10 @@ public class Book {
 
     @Column(name = "SUBJECT")
     private String subject;
+
+    public Book() {
+
+    }
 
     public static Book from(BookDTO dto) {
         return Book.builder()
