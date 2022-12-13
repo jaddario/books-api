@@ -1,9 +1,11 @@
 package com.addario.booksapi.service;
 
+import com.addario.booksapi.exceptions.BookNotFoundException;
 import com.addario.booksapi.model.Book;
 import com.addario.booksapi.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class BookService {
         this.repository = repository;
     }
 
+    @Transactional
     public void insert(Book book) {
         repository.save(book);
     }
@@ -26,10 +29,12 @@ public class BookService {
     }
 
     public Book findById(Long id) {
-        return findById(id);
+        return repository.findById(id)
+                         .orElseThrow(()-> new BookNotFoundException(id));
     }
 
+    @Transactional
     public void deleteById(Long id) {
-        deleteById(id);
+        repository.deleteById(id);
     }
 }

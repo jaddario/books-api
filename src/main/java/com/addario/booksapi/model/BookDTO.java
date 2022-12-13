@@ -1,5 +1,6 @@
 package com.addario.booksapi.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +12,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@RequiredArgsConstructor
+@Builder(toBuilder = true)
+@AllArgsConstructor
 public class BookDTO {
     private Long id;
 
@@ -23,14 +25,14 @@ public class BookDTO {
 
     private String subject;
 
-//    public static BookDTO from(Book entity) {
-//        return BookDTO.builder()
-//                      .id(entity.getId())
-//                      .author(entity.getAuthor())
-//                      .title(entity.getTitle())
-//                      .subject(entity.getSubject())
-//                      .build();
-//    }
+    public static BookDTO from(Book entity) {
+        return BookDTO.builder()
+                      .id(entity.getId())
+                      .author(entity.getAuthor())
+                      .title(entity.getTitle())
+                      .subject(entity.getSubject())
+                      .build();
+    }
 
     @Override
     public boolean equals(Object o) {
