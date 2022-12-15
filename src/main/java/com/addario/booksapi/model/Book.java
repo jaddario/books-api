@@ -26,14 +26,11 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME")
-    private String name;
+    @Column(name = "TITLE")
+    private String title;
 
     @Column(name = "AUTHOR")
     private String author;
-
-    @Column(name = "TITLE")
-    private String title;
 
     @Column(name = "SUBJECT")
     private String subject;
@@ -44,12 +41,11 @@ public class Book {
 
     public static Book from(BookDTO dto) {
         return Book.builder()
-                   .id(dto.getId())
-                   .name(dto.getName())
-                   .author(dto.getAuthor())
-                   .title(dto.getTitle())
-                   .subject(dto.getSubject())
-                   .build();
+                .id(dto.getId())
+                .title(dto.getTitle())
+                .author(dto.getAuthor())
+                .subject(dto.getSubject())
+                .build();
     }
 
 
@@ -59,14 +55,13 @@ public class Book {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
         return Objects.equals(id, book.id) &&
-               Objects.equals(name, book.name) &&
-               Objects.equals(author, book.author) &&
-               Objects.equals(title, book.title) &&
-               Objects.equals(subject, book.subject);
+                Objects.equals(title, book.title) &&
+                Objects.equals(author, book.author) &&
+                Objects.equals(subject, book.subject);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, author, title, subject);
+        return Objects.hash(id, author, title, subject);
     }
 }

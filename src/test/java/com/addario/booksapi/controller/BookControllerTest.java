@@ -3,11 +3,10 @@ package com.addario.booksapi.controller;
 import com.addario.booksapi.model.Book;
 import com.addario.booksapi.repository.BookRepository;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -18,7 +17,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Testcontainers
-@ExtendWith(SpringExtension.class)
+@SpringBootTest
 class BookControllerTest {
 
     @Autowired
@@ -38,8 +37,6 @@ class BookControllerTest {
         registry.add("spring.datasource.username", container::getUsername);
         registry.add("spring.datasource.password", container::getPassword);
     }
-
-
     @Test
     void findAll_isSuccessful() throws Exception {
 
@@ -55,7 +52,7 @@ class BookControllerTest {
 
         List<Book> body = this.underTest.findAll().getBody();
 
-        assertThat(body).hasSize(0);
+        assertThat(body).hasSize(1);
 
     }
 

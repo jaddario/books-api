@@ -17,21 +17,19 @@ import java.util.Objects;
 public class BookDTO {
     private Long id;
 
-    private String name;
+    private String title;
 
     private String author;
-
-    private String title;
 
     private String subject;
 
     public static BookDTO from(Book entity) {
         return BookDTO.builder()
-                      .id(entity.getId())
-                      .author(entity.getAuthor())
-                      .title(entity.getTitle())
-                      .subject(entity.getSubject())
-                      .build();
+                .id(entity.getId())
+                .title(entity.getTitle())
+                .author(entity.getAuthor())
+                .subject(entity.getSubject())
+                .build();
     }
 
     @Override
@@ -39,12 +37,14 @@ public class BookDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BookDTO bookDTO = (BookDTO) o;
-        return Objects.equals(id, bookDTO.id) && Objects.equals(name, bookDTO.name) && Objects.equals(author,
-                bookDTO.author) && Objects.equals(title, bookDTO.title) && Objects.equals(subject, bookDTO.subject);
+        return Objects.equals(id, bookDTO.id) &&
+                Objects.equals(author, bookDTO.author) &&
+                Objects.equals(title, bookDTO.title) &&
+                Objects.equals(subject, bookDTO.subject);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, author, title, subject);
+        return Objects.hash(id, author, title, subject);
     }
 }
