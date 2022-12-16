@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController(value = "/books")
+@RestController
 public class BookController {
 
     private final BookService service;
@@ -63,7 +63,5 @@ public class BookController {
         } catch (EmptyResultDataAccessException e) {
             return ResponseEntity.notFound().build();
         }
-
     }
-
 }
