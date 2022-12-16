@@ -30,11 +30,22 @@ public class BookService {
 
     public Book findById(Long id) {
         return repository.findById(id)
-                         .orElseThrow(()-> new BookNotFoundException(id));
+                .orElseThrow(() -> new BookNotFoundException(id));
+    }
+
+    @Transactional
+    public void updateBookTitle(Long id, String newTitle) {
+        Integer updatedLines = repository.updateBookTitle(id, newTitle);
+        if (hasNot(updatedLines))
+            throw new BookNotFoundException(id);
     }
 
     @Transactional
     public void deleteById(Long id) {
         repository.deleteById(id);
+    }
+
+    private static boolean hasNot(Integer updatedLines) {
+        return updatedLines <= 0;
     }
 }
